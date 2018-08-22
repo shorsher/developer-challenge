@@ -1,5 +1,5 @@
 # Frontend Challenge
-Build a frontend to interact with the Kaleido blockchain backend. 
+Build a frontend to interact with the Kaleido blockchain backend. You have 2 options (see 
 
 This repository will generate the Consortium, Environments, and Nodes required for this challenge. Just follow these steps. 
 ## Setting Up The Blockchain
@@ -21,12 +21,18 @@ After running the script you will see a printout of all the created artifacts. K
    
 ## Building your Application
 
+### Option 1 - Visualize The Artifacts
+
+If you choose this option, build a frontend application that consumes the Kaleido APIs to visualize the consortium that has just been created. 
+
 A full list of APIs to interact with your newly created consortium can be found [here](http://console.kaleido.io/docs/docs/api/)
 
-We're not going to give you guidance on what to build, the only requirement is as follows.
+You can use the same API key that you generated earlier. You might encounter CORS issues, so we recommend hitting out APIs from a backend application first. Here's an example of how we do it in [node using express and request-promise](https://github.com/kaleido-io/frontend-challenge/blob/master/samples/API-Sample.js). This sample can be run using `npm run sample`
 
-### Your application must consume the kaleido APIs to interact with the consortium that this script has created.
 
+### Option 2 - Interact with the blockchain
+
+You now have a fully operational blockchain. Build a frontend application that interacts with this chain. For inspiration see this [script for deploying a contract](https://github.com/kaleido-io/kaleido-js/blob/master/deploy-transact/test.js)
 
 ## Our Stack & Styles
 We encourage you to be creative. We don't want technology to limit that creativity. What follows is some detail about our stack and style guide
