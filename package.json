@@ -1,0 +1,14 @@
+{
+  "name": "interview-challenge",
+  "version": "1.0.0",
+  "description": "Interview Challenge for Kaleido",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Tom Bryant & Gabriel Indik",
+  "license": "MIT",
+  "dependencies": {
+    "consortium-setup-utility": "git+https://github.com/kaleido-io/consortium-setup-utility.git"
+  }
+}

@@ -1,0 +1,39 @@
+{
+    "name": "Big Business Buddies",
+    "description": "A Consortium for doin' big business things",
+    "memberships": [
+        {
+            "name": "Global Corporation of makin' stuff"
+        },
+        {
+            "name": "Worldwide Company for harvesting things"
+        }
+    ],
+    "environments": [
+        {
+            "name": "Get Stuff Done",
+            "provider": "geth",
+            "consensusType": "poa",
+            "nodes": [
+                {
+                    "name": "Worldwide Co. Node",
+                    "owner": "Worldwide Company for harvesting things"
+                },
+                {
+                    "name": "Global Corp. Node",
+                    "owner": "Global Corporation of makin' stuff"
+                }
+            ],
+            "applicationCredentials": [
+                {
+                    "name": "Worldwide Co. Creds",
+                    "owner": "Worldwide Company for harvesting things"
+                },
+                {
+                    "name": "Global Corp. Creds",
+                    "owner": "Global Corporation of makin' stuff"
+                }
+            ]
+        }
+    ]
+}
