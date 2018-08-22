@@ -25,7 +25,7 @@ After running the script you will see a printout of all the created artifacts. K
 
 If you choose this option, build a frontend application that consumes the Kaleido APIs to visualize the consortium that has just been created. 
 
-A full list of APIs to interact with your newly created consortium can be found [here](http://console.kaleido.io/docs/docs/api/)
+A full list of APIs to interact with your newly created consortium can be found [here](http://console.kaleido.io/docs/docs/api_reference/)
 
 You can use the same API key that you generated earlier. You might encounter CORS issues, so we recommend hitting out APIs from a backend application first. Here's an example of how we do it in [node using express and request-promise](https://github.com/kaleido-io/frontend-challenge/blob/master/samples/API-Sample.js). This sample can be run using `npm run sample`
 
