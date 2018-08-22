@@ -1,5 +1,5 @@
 # Frontend Challenge
-Build a frontend to interact with the Kaleido blockchain backend. You have 2 options (see 
+Build a frontend to interact with the Kaleido blockchain backend. [You have 2 options](https://github.com/kaleido-io/frontend-challenge/blob/master/README.md#building-your-application) 
 
 This repository will generate the Consortium, Environments, and Nodes required for this challenge. Just follow these steps. 
 ## Setting Up The Blockchain
