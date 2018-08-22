@@ -25,7 +25,7 @@ After running the script you will see a printout of all the created artifacts. K
    
 ## Building your Application
 
-### Option 1 - Visualize The Sample consortium
+### Option 1 - Visualize the Sample Consortium
 
 If you choose this option, build a frontend application that consumes the Kaleido APIs to visualize the sample consortium
 
