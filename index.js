@@ -4,10 +4,10 @@ const dontRecreateApplicationCredentials = false;
 const API_KEY = process.argv[2];
 
 if(!API_KEY) console.log('\x1b[37m\x1b[41m%s\x1b[0m', '\n  You must provide an API Key to create a consortium  \n');
+
 else {
-
     let kaleidoSetup = new KaleidoSetup(API_KEY);
-
+    console.log('Generating Consortium Please Wait....')
     kaleidoSetup.setup(interviewConsortium,dontRecreateApplicationCredentials).then((result)=>{
         console.log('\x1b[30m\x1b[42m%s\x1b[0m', '\n  Consortium successfully setup  \n');
 

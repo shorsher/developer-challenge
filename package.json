@@ -1,10 +1,11 @@
 {
   "name": "interview-challenge",
   "version": "1.0.0",
-  "description": "Interview Challenge for Kaleido",
+  "description": "Front-end Interview Challenge for Kaleido",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start" : "node index.js"
   },
   "author": "Tom Bryant & Gabriel Indik",
   "license": "MIT",
