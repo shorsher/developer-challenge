@@ -2,9 +2,10 @@
 
 Build a DApp on Kaleido.
 
-Choose a use case you think would be interesting to build as a decentralized application (DApp), then fork this repo and get creative.
+Fork this repo, choose a use case you think would be interesting to build as a decentralized application (DApp), then get creative and have fun.
 
-For a bit of inspiration:
+## What is a DAppp?
+
 - [Blockgeeks](https://blockgeeks.com/guides/dapps/)
   - Background of how DApps have evolved in the wild, and why
 - [State of the DApps]()https://www.stateofthedapps.com/
@@ -12,7 +13,9 @@ For a bit of inspiration:
 - [Kaleido docs](https://docs.kaleido.io/kaleido-platform/full-stack/dapps/)
   - DApps in an Enterprise context
 
-We would like your project to demonstrate your idea end-to-end, but it doesn't need to be a complete application.
+## What does done look like?
+
+We would like your project to demonstrate your concept end-to-end, but it doesn't need to be a complete application.
 
 It must contain:
 - A Web based user experience, built in React
@@ -22,11 +25,13 @@ It must contain:
 
 How much time you spend on each tier is down to you - depending on the role you're applying for and the skills you want to show.
 
-So we've given you a functional starting point in each bit of the stack.
+> We've given you a functional starting point for each layer of the stack.
 
 ## Some ideas
 
-> Just ideas to give you an inspiration. The diversity of options for DApps is the fun. Choose something you think is interesting, and gives you license to focus on the bit of the stack you care about... from how things work under the covers, to how things feel on the UX.
+These are just ideas to give you an inspiration. The diversity of options for DApps is the fun.
+
+Choose something you think is interesting, and gives you license to focus on the bit of the stack you care about... from how things work under the covers, to how things feel on the UX.
 
 - A blockchain backed ratings system for Movies
 - A racing simulation (you can even see one here in our [Racecourse sample](https://github.com/kaleido-io/racecourse))
