@@ -1,58 +1,75 @@
-# Frontend Challenge
-Build a frontend to interact with the Kaleido blockchain backend. [You have 2 options](https://github.com/kaleido-io/frontend-challenge/blob/master/README.md#building-your-application)
+# Developer Challenge
 
-[Check out the Bonus Points Section](https://github.com/kaleido-io/frontend-challenge/blob/master/README.md#bonus-points)
+Build a DApp on Kaleido.
 
-Good luck, have fun. Please share your final project on public github. 
+Choose a use case you think would be interesting to build as a decentralized application (DApp), then fork this repo and get creative.
 
-This repository will generate the Consortium, Environments, and Nodes required for this challenge. Just follow these steps. 
-## Setting Up The Blockchain & Creating the Sample Consortium
-1. Sign up for an account on [Kaleido](https://console.kaleido.io/)
-2. Obtain an API Key by navigating to https://console.kaleido.io/settings/apikeys and clicking + New API Key. 
-  *Make sure you copy this api key and keep it safe you'll need it for the next step*
-3. Clone this repo. 
-4. Install the required node modules by running:
+For a bit of inspiration:
+- [Blockgeeks](https://blockgeeks.com/guides/dapps/)
+  - Background of how DApps have evolved in the wild, and why
+- [State of the DApps]()https://www.stateofthedapps.com/
+  - All that's been built in the wonderful world of public ethereum
+- [Kaleido docs](https://docs.kaleido.io/kaleido-platform/full-stack/dapps/)
+  - DApps in an Enterprise context
 
-   `npm i`
+We would like your project to demonstrate your idea end-to-end, but it doesn't need to be a complete application.
 
-5. Create the consortia by running:
+It must contain:
+- A Web based user experience, built in React
+- A backend-for-the-frontend (BFF), written in Node.js
+- On-chain Smart Contract logic
+- A blockchain running on Kaleido
 
-   `npm run start <YOUR_API_KEY_GOES_HERE>`
+How much time you spend on each tier is down to you - depending on the role you're applying for and the skills you want to show.
+
+So we've given you a functional starting point in each bit of the stack.
+
+## Some ideas
+
+> Just ideas to give you an inspiration. The diversity of options for DApps is the fun. Choose something you think is interesting, and gives you license to focus on the bit of the stack you care about... from how things work under the covers, to how things feel on the UX.
+
+- A blockchain backed ratings system for Movies
+- A racing simulation (you can even see one here in our [Racecourse sample](https://github.com/kaleido-io/racecourse))
+- A funky avatar generator, where each avatar is backed by a unique token
+- A conference ticketing system with camera & QR code integration
+- A digital collectable swag bag, earned by posting to social media
+
+## Want more dev stack?
+
+Here are some dev technologies not included in the starting repo, that we love at Kaleido:
+- Redux for front-end state
+- GraphQL (Apollo) for front-end/back-end comms
+- WebSockets (Socket.io) for live updating and notifications
+- MongoDB database storage
+- Component libraries (insert your favorite here) - at Kaleido we love re-use
+
+Really like something different? No problem. We ask you to keep React and Node.js, but otherwise go for it.
+
+## Setting up your Kaleido blockchain
+
+Run through our [Quick Start](https://docs.kaleido.io/using-kaleido/quick-start/).
+
+When you're done, you will have your very own blockchain, with a smart contract installed that is super simple and lets you get and set a number.
+
+You'll also have a REST API you can use to interact with that on-chain Smart Contract code. Your starting point actually installs a similar contract.
    
-Congratulations you've now created a consortium with two members, one environment and two nodes. *Note: You might also have a third member called Default Organization* 
+## Blockchain accelerators
 
-After running the script you will see a printout of all the created artifacts. Keep this safe as you'll need the information to interact with your consortium via our APIs
-   
-## Building your Application
-
-### Option 1 - Visualize the Sample Consortium
-
-If you choose this option, build a frontend application that consumes the Kaleido APIs to visualize the sample consortium
-
-Examples of possible applications:
-- A Dashboard that displays the artifacts and their information from the sample consortium. [More information on what these artifacts mean here](http://console.kaleido.io/docs/docs/kaleido/)
-- A Notification System that alerts the user when a new member, node or environment is created in the sample consortium
-- A Log Viewer / Status application for one specific node in the sample consortium. 
-- Something totally different & crazy
-
-A full list of APIs to interact with the sample consortia  can be found [here](http://console.kaleido.io/docs/docs/api_reference/)
-
-You can use the same API key that you generated earlier. You might encounter CORS issues, so we recommend hitting out APIs from a backend application first. Here's an example of how we do it in [node using express and request-promise](https://github.com/kaleido-io/frontend-challenge/blob/master/samples/API-Sample.js). This sample can be run using `npm run sample`
+Some full-stack blockchain services available out-of-the-box with Kaleido that you might find helpful in getting your use case built quickly:
+- [REST API Gateway](https://docs.kaleido.io/kaleido-services/ethconnect)
+  - Full details of the REST APIs you created in the quick start, and used in the sample deployment in this repo
+- [IPFS](https://docs.kaleido.io/kaleido-services/ipfs)
+  - Decentralized file storage, with a way to "pin" your files to your on-chain logic using hashes. Easy way to store things to big to put on the blockchain itself.
+- [Token Factory](https://docs.kaleido.io/kaleido-services/token-factory)
+  - Create tokens according to the ERC20/ERC721 standard via a factory UI/API, without needing to learn the code.
+- [Ethereum Dev Tooling](https://docs.kaleido.io/developers/smart-contracts/)
+  - Great tools to help you develop your smart contract logic
 
 
-### Option 2 - Interact with the blockchain
+## Want to know our style?
 
-You now have a fully operational blockchain. Build a frontend application that interacts with the sample consortiums chain. For inspiration see this [script for deploying a contract](https://github.com/kaleido-io/kaleido-js/blob/master/deploy-transact/test.js)
+If you want to be inspired by the Kaleido brand...
 
-## Our Stack & Styles
-We encourage you to be creative. We don't want technology to limit that creativity. What follows is some detail about our stack and style guide
-
-**It is important to note that you are by no means required to use this stack or follow this limited style guide**
-
-### Stack
-- React
-- Redux
-- Sass
 
 ### Styles
 
@@ -60,13 +77,3 @@ We encourage you to be creative. We don't want technology to limit that creativi
 
 ![Text Styles](https://github.com/kaleido-io/frontend-challenge/blob/master/StyleGuide/TextStyles.png?raw=true 'Text Styles')
 
-## Bonus Points
-The following items will earn you bonus points. They are not requirements, the challenge is 100% completeable without them. 
-- Setup your own consortium. The sample consortium is nice, but why not create your own at [console.kaleido.io](https://console.kaleido.io)
-- Use our stack
-- Use our styles
-- Do something totally different & crazy for option 1 or option 2.
-- Make your application [Cephalopod](https://en.wikipedia.org/wiki/Cephalopod) themed
-- Define your own style library
-- Use websockets
-- Include animation / Micro-interactions
