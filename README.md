@@ -41,7 +41,7 @@ Choose something you think is interesting, and gives you license to focus on the
 
 ## Want more dev stack?
 
-Here are some dev technologies not included in the starting repo, that we love at Kaleido:
+Here are some dev technologies (not in the starter repo) that we love at Kaleido:
 - Redux for front-end state
 - GraphQL (Apollo) for front-end/back-end comms
 - WebSockets (Socket.io) for live updating and notifications
