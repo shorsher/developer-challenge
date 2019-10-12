@@ -8,8 +8,8 @@ Fork this repo, choose a use case you think would be interesting to build as a d
 
 - [Blockgeeks](https://blockgeeks.com/guides/dapps/)
   - Background of how DApps have evolved in the wild, and why
-- [State of the DApps]()https://www.stateofthedapps.com/
-  - All that's been built in the wonderful world of public ethereum
+- [State of the DApps](https://www.stateofthedapps.com/)
+  - All that's been built in the wonderful world of public Ethereum
 - [Kaleido docs](https://docs.kaleido.io/kaleido-platform/full-stack/dapps/)
   - DApps in an Enterprise context
 
@@ -25,7 +25,7 @@ It must contain:
 
 How much time you spend on each tier is down to you - depending on the role you're applying for and the skills you want to show.
 
-> We've given you a functional starting point for each layer of the stack.
+> We've given you a functional starting point for each layer of the stack, so you don't have to be inventive in every layer.
 
 ## Some ideas
 
@@ -50,6 +50,8 @@ Here are some dev technologies not included in the starting repo, that we love a
 
 Really like something different? No problem. We ask you to keep React and Node.js, but otherwise go for it.
 
+Find yourself throwing away most of the base repo? No problem.
+
 ## Setting up your Kaleido blockchain
 
 Run through our [Quick Start](https://docs.kaleido.io/using-kaleido/quick-start/).
@@ -57,6 +59,30 @@ Run through our [Quick Start](https://docs.kaleido.io/using-kaleido/quick-start/
 When you're done, you will have your very own blockchain, with a smart contract installed that is super simple and lets you get and set a number.
 
 You'll also have a REST API you can use to interact with that on-chain Smart Contract code. Your starting point actually installs a similar contract.
+
+## Getting this repo up and running
+
+This repo is a thin layer on top of [create-react-app](https://github.com/facebook/create-react-app).
+
+### Configure the config file
+
+Copy [frontend/config.example.json](frontend/config.example.json) to `frontend/config.json` and edit it to the values from the Kaleido Connect panel.
+
+### Start it up
+
+```
+# Start the backend in one terminal
+cd backend
+npm i
+npm start
+
+# Start a dev server for your react app in another
+# Note the package.json sets `"proxy": "http://localhost:4000"` to pass through API calls to the backend
+cd frontend
+npm i
+npm start
+```
+
    
 ## Blockchain accelerators
 
@@ -69,7 +95,6 @@ Some full-stack blockchain services available out-of-the-box with Kaleido that y
   - Create tokens according to the ERC20/ERC721 standard via a factory UI/API, without needing to learn the code.
 - [Ethereum Dev Tooling](https://docs.kaleido.io/developers/smart-contracts/)
   - Great tools to help you develop your smart contract logic
-
 
 ## Want to know our style?
 
