@@ -4,7 +4,7 @@ Build a DApp on Kaleido.
 
 Fork this repo, choose a use case you think would be interesting to build as a decentralized application (DApp), then get creative and have fun.
 
-## What is a DAppp?
+## What is a DApp?
 
 - [Blockgeeks](https://blockgeeks.com/guides/dapps/)
   - Background of how DApps have evolved in the wild, and why
