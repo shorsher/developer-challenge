@@ -22,6 +22,7 @@ It must:
 - Have backend-for-the-frontend (BFF), written in Node.js
 - Have on-chain Smart Contract logic, written in Solidity
 - Use blockchain running on Kaleido
+- A README that gives a quick overview of the use case, and tells us how to run it
 
 How much time you spend on each tier is down to you - depending on your interests and the skills you want to show.
 
@@ -45,7 +46,7 @@ Here are some dev technologies (not in the starter repo) that we love at Kaleido
 - Redux for front-end state
 - GraphQL (Apollo) for front-end/back-end comms
 - WebSockets (Socket.io) for live updating and notifications
-- MongoDB database storage
+- MongoDB NoSQL database for configuration and local state
 - Component libraries (insert your favorite here) - at Kaleido we love re-use
 
 Want to throw away most of the original `create-react-app` + `express` based repo?
