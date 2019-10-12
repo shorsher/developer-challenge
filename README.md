@@ -60,7 +60,7 @@ When you're done, you will have your very own blockchain, with a smart contract 
 
 You'll also have a REST API you can use to interact with that on-chain Smart Contract code.
 
-> This starter project installs a similar contract, which you can edit [contracts/simplestorage.sol](contracts/simplestorage.sol)
+> This starter project installs a similar contract, which you can edit [backend/contracts/simplestorage.sol](backend/contracts/simplestorage.sol)
 ## Getting this repo up and running
 
 This repo is a thin layer on top of [create-react-app](https://github.com/facebook/create-react-app).
