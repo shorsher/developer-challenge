@@ -30,9 +30,11 @@ How much time you spend on each tier is down to you - depending on your interest
 
 ## Some ideas
 
-These are just ideas to give you an inspiration.
+These are just ideas to give inspiration
 
-Choose something you think is interesting, and gives you license to focus on the bit of the stack you care about... from how things work under the covers, to how things feel on the UX.
+Choose something/anything you think is interesting, and gives you license to focus on the bit of the stack you care about.
+
+It's your choice whether you focus more on how things work under the covers, or how things feel in the UI/UX.
 
 - A blockchain backed ratings system for Movies
 - A racing simulation (you can even see one here in our [Racecourse sample](https://github.com/kaleido-io/racecourse))
