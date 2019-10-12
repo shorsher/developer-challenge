@@ -23,9 +23,9 @@ It must:
 - Have on-chain Smart Contract logic, written in Solidity
 - Use blockchain running on Kaleido
 
-How much time you spend on each tier is down to you - depending on the role you're applying for and the skills you want to show.
+How much time you spend on each tier is down to you - depending on your interests and the skills you want to show.
 
-> We've given you a functional starting point for each layer of the stack, so you don't have to be inventive in every layer.
+> We've given you a basic, but funcational, starting point for each layer of the stack.
 
 ## Some ideas
 
