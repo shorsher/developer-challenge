@@ -17,11 +17,11 @@ Fork this repo, choose a use case you think would be interesting to build as a d
 
 We would like your project to demonstrate your concept end-to-end, but it doesn't need to be a complete application.
 
-It must contain:
-- A Web based user experience, built in React
-- A backend-for-the-frontend (BFF), written in Node.js
-- On-chain Smart Contract logic
-- A blockchain running on Kaleido
+It must:
+- Have a Web based user experience, built in React
+- Have backend-for-the-frontend (BFF), written in Node.js
+- Have on-chain Smart Contract logic, written in Solidity
+- Use blockchain running on Kaleido
 
 How much time you spend on each tier is down to you - depending on the role you're applying for and the skills you want to show.
 
