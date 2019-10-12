@@ -66,7 +66,7 @@ This repo is a thin layer on top of [create-react-app](https://github.com/facebo
 
 ### Configure the config file
 
-Copy [frontend/config.example.json](frontend/config.example.json) to `frontend/config.json` and edit it to the values from the Kaleido Connect panel.
+Copy [backend/config.example.json](frontend/config.example.json) to `backend/config.json` and edit it to the values from the Kaleido Connect panel.
 
 ### Start it up
 
