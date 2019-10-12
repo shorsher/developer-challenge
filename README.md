@@ -58,8 +58,9 @@ Run through our [Quick Start](https://docs.kaleido.io/using-kaleido/quick-start/
 
 When you're done, you will have your very own blockchain, with a smart contract installed that is super simple and lets you get and set a number.
 
-You'll also have a REST API you can use to interact with that on-chain Smart Contract code. Your starting point actually installs a similar contract.
+You'll also have a REST API you can use to interact with that on-chain Smart Contract code.
 
+> This starter project installs a similar contract, which you can edit [contracts/simplestorage.sol](contracts/simplestorage.sol)
 ## Getting this repo up and running
 
 This repo is a thin layer on top of [create-react-app](https://github.com/facebook/create-react-app).
