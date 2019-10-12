@@ -48,9 +48,8 @@ Here are some dev technologies not included in the starting repo, that we love a
 - MongoDB database storage
 - Component libraries (insert your favorite here) - at Kaleido we love re-use
 
-Really like something different? No problem. We ask you to keep React and Node.js, but otherwise go for it.
-
-Find yourself throwing away most of the base repo? No problem.
+Want to throw away most of the original `create-react-app` + `express` based repo?
+No problem. Go for it.
 
 ## Setting up your Kaleido blockchain
 
