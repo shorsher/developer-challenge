@@ -25,11 +25,11 @@ It must:
 
 How much time you spend on each tier is down to you - depending on your interests and the skills you want to show.
 
-> We've given you a basic, but funcational, starting point for each layer of the stack.
+> We've given you a basic, but functional, starting point for each layer of the stack.
 
 ## Some ideas
 
-These are just ideas to give you an inspiration. The diversity of options for DApps is the fun.
+These are just ideas to give you an inspiration.
 
 Choose something you think is interesting, and gives you license to focus on the bit of the stack you care about... from how things work under the covers, to how things feel on the UX.
 
