@@ -90,6 +90,8 @@ npm start
 ## Blockchain accelerators
 
 Some full-stack blockchain services available out-of-the-box with Kaleido that you might find helpful in getting your use case built quickly:
+- [Block explorer](https://docs.kaleido.io/kaleido-services/block-explorer/)
+  - See the transactions that you submit from your application mined into blocks in your blockchain
 - [REST API Gateway](https://docs.kaleido.io/kaleido-services/ethconnect)
   - Full details of the REST APIs you created in the quick start, and used in the sample deployment in this repo
 - [IPFS](https://docs.kaleido.io/kaleido-services/ipfs)
