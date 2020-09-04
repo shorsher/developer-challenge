@@ -1,6 +1,7 @@
 module.exports = {
   PORT: 4000,
   // Connectivity details for the node
+  // ** Make sure you take the "-connect" URL for your node here, which is the REST API Gateway **
   KALEIDO_REST_GATEWAY_URL: "https://abcd1234-bcde2345-connect.us0-aws.kaleido.io",
   KALEIDO_AUTH_USERNAME: "XXXXXXXX",
   KALEIDO_AUTH_PASSWORD: "XXXXXXXX",

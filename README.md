@@ -4,6 +4,8 @@ Build a DApp on Kaleido.
 
 Fork this repo, choose a use case you think would be interesting to build as a decentralized application (DApp), then get creative and have fun.
 
+... and please **ask questions** - we don't want you to be stuck, an appreciate collaboration through the project.
+
 ## What is a DApp?
 
 - [Blockgeeks](https://blockgeeks.com/guides/dapps/)
@@ -27,6 +29,7 @@ It must:
 How much time you spend on each tier is down to you - depending on your interests and the skills you want to show.
 
 > We've given you a basic, but functional, starting point for each layer of the stack.
+> ... and yes, we know the UI is a bit naff ;-)
 
 ## Some ideas
 
@@ -45,11 +48,13 @@ It's your choice whether you focus more on how things work under the covers, or 
 ## Want more dev stack?
 
 Here are some dev technologies (not in the starter repo) that we love at Kaleido:
+- Material UI (or insert your favorite component library here) - at Kaleido we love re-use
 - Redux for front-end state
 - GraphQL (Apollo) for front-end/back-end comms
 - WebSockets (Socket.io) for live updating and notifications
 - MongoDB NoSQL database for configuration and local state
-- Component libraries (insert your favorite here) - at Kaleido we love re-use
+
+Remember we'd like a thin thread through your DApp, so choose technologies you think you can be productive in.
 
 Want to throw away most of the original `create-react-app` + `express` based repo?
 No problem. Go for it.
