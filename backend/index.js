@@ -20,7 +20,7 @@ let swaggerClient; // Initialized in init()
 
 app.use(bodyparser.json());
 
-app.post('/api/contract', async (req, res) => {
+app.post('/api/election', async (req, res) => {
   // Note: we really only want to deploy a new instance of the contract
   //       when we are initializing our on-chain state for the first time.
   //       After that the application should keep track of the contract address.
@@ -28,12 +28,13 @@ app.post('/api/contract', async (req, res) => {
     let postRes = await swaggerClient.apis.default.constructor_post({
       body: {
         // Here we set the constructor parameters
-        x: req.body.x || 0
+        candidateOne: req.body.candidateOne,
+        candidateTwo: req.body.candidateTwo
       },
       "kld-from": FROM_ADDRESS,
       "kld-sync": "true"
     });
-    res.status(200).send(postRes.body)
+    res.status(200).send(postRes.body);
     console.log("Deployed instance: " + postRes.body.contractAddress);
   }
   catch(err) {
@@ -41,12 +42,12 @@ app.post('/api/contract', async (req, res) => {
   }
 });
 
-app.post('/api/contract/:address/value', async (req, res) => {
+app.post('/api/election/:address/vote', async (req, res) => {
   try {
-    let postRes = await swaggerClient.apis.default.set_post({
+    let postRes = await swaggerClient.apis.default.vote_post({
       address: req.params.address,
       body: {
-        x: req.body.x || 0
+        index: req.body.candidate
       },
       "kld-from": FROM_ADDRESS,
       "kld-sync": "true"
@@ -58,13 +59,10 @@ app.post('/api/contract/:address/value', async (req, res) => {
   }
 });
 
-app.get('/api/contract/:address/value', async (req, res) => {
+app.get('/api/election/:address/results', async (req, res) => {
   try {
-    let postRes = await swaggerClient.apis.default.get_get({
+    let postRes = await swaggerClient.apis.default.getResults_get({
       address: req.params.address,
-      body: {
-        x: req.body.x || 0
-      },
       "kld-from": FROM_ADDRESS,
       "kld-sync": "true"
     });
@@ -82,12 +80,12 @@ async function init() {
   // Sends the contents of your contracts directory up to Kaleido on each startup.
   // Kaleido compiles you code and turns into a REST API (with OpenAPI/Swagger).
   // Instances can then be deployed and queried using this REST API
-  // Note: we really only needed when the contract actually changes.  
+  // Note: we really only needed when the contract actually changes.
   const url = new URL(KALEIDO_REST_GATEWAY_URL);
   url.username = KALEIDO_AUTH_USERNAME;
   url.password = KALEIDO_AUTH_PASSWORD;
   url.pathname = "/abis";
-  var archive = archiver('zip');  
+  var archive = archiver('zip');
   archive.directory("contracts", "");
   await archive.finalize();
   let res = await request.post({
@@ -95,7 +93,7 @@ async function init() {
     qs: {
       compiler: "0.5", // Compiler version
       source: CONTRACT_MAIN_SOURCE_FILE, // Name of the file in the directory
-      contract: `${CONTRACT_MAIN_SOURCE_FILE}:${CONTRACT_CLASS_NAME}` // Name of the contract in the 
+      contract: `${CONTRACT_MAIN_SOURCE_FILE}:${CONTRACT_CLASS_NAME}` // Name of the contract in the
     },
     json: true,
     headers: {
@@ -107,7 +105,7 @@ async function init() {
         options: {
           filename: 'smartcontract.zip',
           contentType: 'application/zip',
-          knownLength: archive.pointer()    
+          knownLength: archive.pointer()
         }
       }
     }
@@ -116,7 +114,7 @@ async function init() {
   url.pathname = res.path;
   url.search = '?ui';
   console.log(`Generated REST API: ${url}`);
-  
+
   // Store a singleton swagger client for us to use
   swaggerClient = await Swagger(res.openapi, {
     requestInterceptor: req => {
@@ -132,7 +130,6 @@ init().catch(err => {
   console.error(err.stack);
   process.exit(1);
 });
-  
 
 module.exports = {
   app

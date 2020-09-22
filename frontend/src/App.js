@@ -8,17 +8,18 @@ function App() {
   const [deployState, setDeployState] = useState("Deploy");
   const [contractAddress, setContractAddress] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
-  const [desiredValue, setDesiredValue] = useState(0);
-  const [value, setValue] = useState("Get Value");
 
   async function deployContract() {
     setLoading(true);
     setErrorMsg(null);
     setDeployState("Deploying...")
     try {
-      const res = await fetch('/api/contract', {
+      const res = await fetch('/api/election', {
         method: 'POST',
-        body: JSON.stringify({}),
+        body: JSON.stringify({
+          candidateOne: "Candidate One",
+          candidateTwo: "Candidate Two"
+        }),
         headers: { 'Content-Type': 'application/json' }
       });
       const {contractAddress : addr, error} = await res.json();
@@ -36,46 +37,45 @@ function App() {
     setLoading(false);
   }
 
-  async function setContractValue() {
+  async function vote(candidate) {
     setLoading(true);
     setErrorMsg(null);
+
     try {
-      const res = await fetch(`/api/contract/${contractAddress}/value`, {
+      const res = await fetch(`/api/election/${contractAddress}/vote`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json'},
         body: JSON.stringify({
-          x: desiredValue || 0
+          candidate: candidate
         })
       });
       const {error} = await res.json();
       if (!res.ok) {
-        setErrorMsg(error)
+        setErrorMsg(error);
       }
-    } catch(err) {
-      setErrorMsg(err.stack)
+    } catch (err) {
+      setErrorMsg(err.stack);
     }
+
     setLoading(false);
   }
 
-  async function getContractValue() {
+  async function getResults() {
     setLoading(true);
     setErrorMsg(null);
-    try {
-      const res = await fetch(`/api/contract/${contractAddress}/value`);
-      const {x, error} = await res.json();
-      if (!res.ok) {
-        setErrorMsg(error);
-      } else {
-        setValue(x);
-      }
-    } catch(err) {
-      setErrorMsg(err.stack)
-    }
-    setLoading(false);
-  }
 
-  function handleChange(event) {
-    setDesiredValue(event.target.value);
+     try {
+       const res = await fetch(`/api/election/${contractAddress}/results`);
+       const {results, error} = await res.json();
+       if (!res.ok) {
+         setErrorMsg(error);
+       } else {
+        console.log(results)
+       }
+     } catch (err) {
+       setErrorMsg(err.stack);
+     }
+    setLoading(false);
   }
 
   return (
@@ -83,17 +83,19 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" aria-busy={loading}/>
         <p>
-          <button type="button" className="App-button" disabled={loading} onClick={deployContract}>{deployState} Contract</button>
+          <button type="button" className="App-button" disabled={loading} onClick={deployContract}>{deployState} Election</button>
         </p>
         { contractAddress && <p>
           Contract Address: {contractAddress}
         </p>}
         <p>
-          <input className="App-input" disabled={loading || !contractAddress} onChange={handleChange}/>
-          <button type="button" className="App-button" disabled={loading || !contractAddress || !desiredValue} onClick={setContractValue}>Set Value</button>
+          <button type="button" className="App-button" onClick={() => vote(0)}>Candidate One</button>
         </p>
         <p>
-          <button type="button" className="App-button" disabled={loading || !contractAddress} onClick={getContractValue}>{value}</button>
+          <button type="button" className="App-button" onClick={() => vote(1)}>Candidate Two</button>
+        </p>
+        <p>
+          <button type="button" className="App-button" onClick={getResults}>Get Results</button>
         </p>
         { errorMsg && <pre class="App-error">
           Error: {errorMsg}
