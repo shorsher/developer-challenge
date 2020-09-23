@@ -1,5 +1,5 @@
 const express = require('express');
-const mongo = require('../db')
+const mongo = require('../db/mongo')
 
 const {
   FROM_ADDRESS,
@@ -9,6 +9,7 @@ let electionController = function (swaggerClient) {
     let router = express.Router();
 
     router.post('/api/election', async (req, res) => {
+        //TODO: add candidates to mongo
         // Note: we really only want to deploy a new instance of the contract
         //       when we are initializing our on-chain state for the first time.
         //       After that the application should keep track of the contract address.
@@ -58,12 +59,6 @@ let electionController = function (swaggerClient) {
       catch(err) {
         res.status(500).send({error: `${err.response && err.response.body && err.response.text}\n${err.stack}`});
       }
-    });
-
-    router.post('/api/election/candidates', async (req, res) => {
-      const { db } = mongo;
-      const electionColl = db.collection('election');
-
     });
 
     return router;
