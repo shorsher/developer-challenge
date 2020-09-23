@@ -1,80 +1,26 @@
 const request = require('request-promise-native')
 const express = require('express');
-const app = express();
 const archiver = require('archiver');
 const Swagger = require('swagger-client');
 const {URL} = require('url');
 const bodyparser = require('body-parser');
+const mongo = require("./db/mongo");
+const electionController = require("./controllers/election");
 
 const {
   KALEIDO_REST_GATEWAY_URL,
   KALEIDO_AUTH_USERNAME,
   KALEIDO_AUTH_PASSWORD,
   PORT,
-  FROM_ADDRESS,
   CONTRACT_MAIN_SOURCE_FILE,
   CONTRACT_CLASS_NAME
 } = require('./config');
 
-let swaggerClient; // Initialized in init()
-
-app.use(bodyparser.json());
-
-app.post('/api/election', async (req, res) => {
-  // Note: we really only want to deploy a new instance of the contract
-  //       when we are initializing our on-chain state for the first time.
-  //       After that the application should keep track of the contract address.
-  try {
-    let postRes = await swaggerClient.apis.default.constructor_post({
-      body: {
-        // Here we set the constructor parameters
-        candidateOne: req.body.candidateOne,
-        candidateTwo: req.body.candidateTwo
-      },
-      "kld-from": FROM_ADDRESS,
-      "kld-sync": "true"
-    });
-    res.status(200).send(postRes.body);
-    console.log("Deployed instance: " + postRes.body.contractAddress);
-  }
-  catch(err) {
-    res.status(500).send({error: `${err.response && err.response.body}\n${err.stack}`});
-  }
-});
-
-app.post('/api/election/:address/vote', async (req, res) => {
-  try {
-    let postRes = await swaggerClient.apis.default.vote_post({
-      address: req.params.address,
-      body: {
-        index: req.body.candidate
-      },
-      "kld-from": FROM_ADDRESS,
-      "kld-sync": "true"
-    });
-    res.status(200).send(postRes.body)
-  }
-  catch(err) {
-    res.status(500).send({error: `${err.response && err.response.body && err.response.text}\n${err.stack}`});
-  }
-});
-
-app.get('/api/election/:address/results', async (req, res) => {
-  try {
-    let postRes = await swaggerClient.apis.default.getResults_get({
-      address: req.params.address,
-      "kld-from": FROM_ADDRESS,
-      "kld-sync": "true"
-    });
-    res.status(200).send(postRes.body)
-  }
-  catch(err) {
-    res.status(500).send({error: `${err.response && err.response.body && err.response.text}\n${err.stack}`});
-  }
-});
-
-async function init() {
-
+/**
+ * Compiles contract code and returns a swagger client singleton for making
+ * REST requests to our smart contract
+ */
+async function uploadContract() {
   // Kaleido example for compilation of your Smart Contract and generating a REST API
   // --------------------------------------------------------------------------------
   // Sends the contents of your contracts directory up to Kaleido on each startup.
@@ -115,22 +61,30 @@ async function init() {
   url.search = '?ui';
   console.log(`Generated REST API: ${url}`);
 
-  // Store a singleton swagger client for us to use
-  swaggerClient = await Swagger(res.openapi, {
+  // Return a singleton swagger client for us to use
+  return await Swagger(res.openapi, {
     requestInterceptor: req => {
       req.headers.authorization = `Basic ${Buffer.from(`${KALEIDO_AUTH_USERNAME}:${KALEIDO_AUTH_PASSWORD}`).toString("base64")}`;
     }
   });
-
-  // Start listening
-  app.listen(PORT, () => console.log(`Kaleido DApp backend listening on port ${PORT}!`))
 }
 
-init().catch(err => {
+async function main() {
+  try {
+    await mongo.connect();
+    const app = express();
+    app.use(bodyparser.json());
+    let swaggerClient = await uploadContract();
+
+    app.use(electionController(swaggerClient));
+    app.listen(PORT, () => console.log(`kaleido dapp backend listening on port ${PORT}!`));
+
+  } catch (err) {
+    throw err;
+  }
+}
+
+main().catch(err => {
   console.error(err.stack);
   process.exit(1);
 });
-
-module.exports = {
-  app
-};
