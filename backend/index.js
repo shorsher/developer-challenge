@@ -6,6 +6,7 @@ const {URL} = require('url');
 const bodyparser = require('body-parser');
 const mongo = require("./db/mongo");
 const electionController = require("./controllers/election");
+const cors = require('cors');
 
 const {
   KALEIDO_REST_GATEWAY_URL,
@@ -73,6 +74,7 @@ async function main() {
   try {
     await mongo.connect();
     const app = express();
+    app.use(cors());
     app.use(bodyparser.json());
     let swaggerClient = await uploadContract();
 

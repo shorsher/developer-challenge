@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import logo from './logo.svg';
-import Button from '@material-ui/core/Button'
 import './Home.css';
+import ElectionCard from '../components/cards/ElectionCard';
+import VoteCard from '../components/cards/VoteCard';
 
 export default function Home() {
 
@@ -81,27 +81,22 @@ export default function Home() {
 
 return (
   <div className="App">
-    <header className="App-header">
-    <img src={logo} className="App-logo" alt="logo" aria-busy={loading}/>
-    <p>
-      <button type="button" className="App-button" disabled={loading} onClick={deployContract}>{deployState} Election</button>
-    </p>
+    <div className="Card">
+      <ElectionCard />
+    </div>
+    <div className="Card">
+      <VoteCard />
+    </div>
+      {/* <button type="button" className="App-button" disabled={loading} onClick={deployContract}>{deployState} Election</button>
     { contractAddress && <p>
       Contract Address: {contractAddress}
     </p>}
-    <p>
       <button type="button" className="App-button" onClick={() => vote(0)}>Candidate One</button>
-    </p>
-    <p>
       <Button variant="contained" color="primary" onClick={() => vote(1)}>Candidate Two</Button>
-    </p>
-    <p>
       <button type="button" className="App-button" onClick={getResults}>Get Results</button>
-    </p>
     { errorMsg && <pre class="App-error">
       Error: {errorMsg}
-    </pre>}
-    </header>
+    </pre>} */}
   </div>
 );
 }
