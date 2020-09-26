@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './Home.css';
 import ElectionCard from '../components/cards/ElectionCard';
 import VoteCard from '../components/cards/VoteCard';
+import ResultsCard from '../components/cards/ResultsCard';
 
 export default function Home() {
 
@@ -87,16 +88,9 @@ return (
     <div className="Card">
       <VoteCard />
     </div>
-      {/* <button type="button" className="App-button" disabled={loading} onClick={deployContract}>{deployState} Election</button>
-    { contractAddress && <p>
-      Contract Address: {contractAddress}
-    </p>}
-      <button type="button" className="App-button" onClick={() => vote(0)}>Candidate One</button>
-      <Button variant="contained" color="primary" onClick={() => vote(1)}>Candidate Two</Button>
-      <button type="button" className="App-button" onClick={getResults}>Get Results</button>
-    { errorMsg && <pre class="App-error">
-      Error: {errorMsg}
-    </pre>} */}
+    <div className="Card">
+      <ResultsCard />
+    </div>
   </div>
 );
 }

@@ -1,14 +1,15 @@
 import React from 'react';
 import './Registration.css';
 import {
-  Button,
-  CircularProgress,
   Typography,
   FormControl,
   OutlinedInput,
   InputLabel,
   TextField,
 } from '@material-ui/core';
+
+import { Alert, AlertTitle } from '@material-ui/lab';
+
 import ButtonLoader from '../components/button-loader/ButtonLoader';
 const axios = require('axios');
 
@@ -21,6 +22,9 @@ class Registration extends React.Component {
         nameTwo: '',
         platformTwo: '',
         loading: false,
+        submitSuccess: false,
+        submitError: false,
+        contractAddress: '',
       };
       this.handleChange = this.handleChange.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
@@ -43,7 +47,6 @@ class Registration extends React.Component {
 
     handleSubmit = async (event) => {
       this.setState({'loading': true});
-      this.state.loading = true;
       try {
         event.preventDefault();
         const payload = {
@@ -62,10 +65,38 @@ class Registration extends React.Component {
         //TODO: store contract code in cookies
         const response = await axios.post(
           'http://localhost:4000/api/election/', payload
-        )
+        );
+
+        const address = response.data.contractAddress || '';
+        this.setState({'contractAddress': address});
         this.setState({'loading': false});
+        this.setState({'submitSuccess': true});
       } catch (error) {
         console.log(error);
+        this.setState({'loading': false});
+        this.setState({'submitError': true});
+      }
+    }
+
+    // I'm sure there is a better way to do this
+    submitAlert = () => {
+      if (this.state.submitSuccess) {
+        return(
+          <div className="half-margin-top">
+            <Alert severity="success">
+                <AlertTitle>Success</AlertTitle>
+                Ballot Address: <strong>{this.state.contractAddress}</strong>
+            </Alert>
+          </div>
+        )
+      } else if (this.state.submitError) {
+        return(
+          <div className="half-margin-top">
+            <Alert severity="error">Error submitting registration!</Alert>
+          </div>
+        )
+      } else {
+        return null;
       }
     }
 
@@ -79,7 +110,7 @@ class Registration extends React.Component {
             </Typography>
             <div className="form-wrapper">
               <div className="form">
-                <Typography variant="h6">
+                <Typography gutterBottom={true} variant="h6">
                   Candidate One
                 </Typography>
                 <FormControl required variant="outlined">
@@ -110,7 +141,7 @@ class Registration extends React.Component {
                 </div>
               </div>
               <div className="form">
-                <Typography variant="h6">
+                <Typography gutterBottom={true} variant="h6">
                   Candidate Two
                 </Typography>
                 <FormControl required variant="outlined">
@@ -141,16 +172,17 @@ class Registration extends React.Component {
                 </div>
               </div>
             </div>
-            {/* <Button disabled={!this.isValid()} variant="contained" color="primary" type="submit" value="Submit">
-                Submit
-            </Button> */}
             <ButtonLoader
               isValid={this.isValid()}
               loading={this.state.loading}
             />
+            <div className="half-margin-top">
+              {this.submitAlert()}
+            </div>
           </div>
         </form>
       );
     }
 }
+
 export default Registration;

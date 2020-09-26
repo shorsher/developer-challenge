@@ -9,11 +9,11 @@ import icon from "../../icons/candidate.svg";
 const useStyles = makeStyles(() => ({
   card: {
     backgroundColor: '#ffff',
-    borderRadius: '5px',
+    borderRadius: '15px',
     display: 'flex',
     flexDirection: 'column',
-    height: '300px',
-    width: '600px',
+    height: '500px',
+    width: '450px',
     alignItems: 'center',
     justifyContent: 'center',
     margin: '20px',
@@ -29,7 +29,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export default function Election() {
+export default function ElectionCard() {
   const classes = useStyles();
   let history = useHistory();
 

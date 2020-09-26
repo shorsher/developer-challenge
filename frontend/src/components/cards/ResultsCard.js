@@ -2,7 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from 'react-router-dom'
 import Button from '@material-ui/core/Button'
-import icon from "../../icons/online-voting.svg";
+import icon from "../../icons/elections.svg";
 import {
   Typography
 } from '@material-ui/core';
@@ -37,20 +37,21 @@ export default function Election() {
   let history = useHistory();
 
   const voteClick = () => {
-    history.push('/vote');
+      //TODO: build results page
+    // history.push('/vote');
   }
 
   return (
     <div className={classes.card}>
       <Typography variant="h3" component="p">
-       Vote
+       View Results
       </Typography>
       <img src={icon} className={classes.logo} alt="logo"/>
       <div className={classes.voteWrapper}>
-        <Button variant="contained" onClick={voteClick} color="primary">Vote</Button>
+        <Button variant="contained" onClick={voteClick} color="primary">Results</Button>
       </div>
       <Typography variant="body1" component="p">
-        Vote for a candidate.
+          View election results.
       </Typography>
     </div>
   );

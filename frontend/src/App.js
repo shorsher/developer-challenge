@@ -4,6 +4,7 @@ import Header from './components/header/Header'
 
 import Home from './pages/Home';
 import Registration from './pages/Registration';
+import ElectionSearch from './components/search/ElectionSearch';
 
 function App() {
   return (
@@ -12,6 +13,9 @@ function App() {
       <Switch>
         <Route exact path="/register">
           <Registration />
+        </Route>
+        <Route exact path="/vote">
+          <ElectionSearch />
         </Route>
         <Route path="/">
           <Home />

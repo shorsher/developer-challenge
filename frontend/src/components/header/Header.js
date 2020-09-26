@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -17,6 +18,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: 'white',
   },
   logo: {
+    cursor: 'pointer',
     height: '35px',
     marginRight: theme.spacing(1),
     paddingBottom: theme.spacing(1),
@@ -25,12 +27,17 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Header() {
   const classes = useStyles();
+  let history = useHistory();
+
+  const handleHomeClick = () => {
+    history.push('/');
+  }
 
   return (
     <div className={classes.root}>
       <AppBar position="sticky" className={classes.appBar}>
         <Toolbar>
-          <img src={logo} className={classes.logo} alt="logo"/>
+          <img src={logo} onClick={handleHomeClick} className={classes.logo} alt="logo"/>
           <Typography variant="h5" className={classes.title}>
             KaleidElect
           </Typography>
