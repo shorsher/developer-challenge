@@ -9,6 +9,26 @@ const {
 let electionController = (swaggerClient) => {
     let router = express.Router();
 
+    router.get('/api/election/candidates/:address', async (req, res) => {
+      try {
+        const { db } = mongo;
+        const coll = db.collection('candidates');
+        const ballotAddress = req?.params?.address || '';
+        console.log("ballot address: ", ballotAddress);
+        const query = {
+          address: ballotAddress
+        };
+
+        const candidates = await coll.find(query).toArray();
+        const resp = {};
+        resp.candidates = candidates;
+        res.status(200).send(resp);
+      }
+      catch(err) {
+        res.status(500).send({error: `${err.response && err.response.body && err.response.text}\n${err.stack}`});
+      }
+    });
+
     router.post('/api/election', async (req, res) => {
       try{
         const { db } = mongo;
@@ -52,10 +72,10 @@ let electionController = (swaggerClient) => {
       }
     });
 
-    router.post('/api/election/:address/vote', async (req, res) => {
+    router.post('/api/election/vote', async (req, res) => {
       try {
         let postRes = await swaggerClient.apis.default.vote_post({
-          address: req.params.address,
+          address: req.body.address,
           body: {
             index: req.body.candidate
           },
@@ -69,7 +89,7 @@ let electionController = (swaggerClient) => {
       }
     });
 
-    router.get('/api/election/:address/results', async (req, res) => {
+    router.get('/api/election/results/:address', async (req, res) => {
       try {
         let postRes = await swaggerClient.apis.default.getResults_get({
           address: req.params.address,
@@ -82,6 +102,7 @@ let electionController = (swaggerClient) => {
         res.status(500).send({error: `${err.response && err.response.body && err.response.text}\n${err.stack}`});
       }
     });
+
     return router;
 }
 

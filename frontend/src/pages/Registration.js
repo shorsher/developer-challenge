@@ -7,9 +7,7 @@ import {
   InputLabel,
   TextField,
 } from '@material-ui/core';
-
 import { Alert, AlertTitle } from '@material-ui/lab';
-
 import ButtonLoader from '../components/button-loader/ButtonLoader';
 const axios = require('axios');
 
@@ -46,8 +44,8 @@ class Registration extends React.Component {
     }
 
     handleSubmit = async (event) => {
-      this.setState({'loading': true});
       try {
+        this.setState({'loading': true});
         event.preventDefault();
         const payload = {
           candidateOne: {
@@ -62,9 +60,9 @@ class Registration extends React.Component {
           },
         };
 
-        //TODO: store contract code in cookies
         const response = await axios.post(
-          'http://localhost:4000/api/election/', payload
+          'http://localhost:4000/api/election/',
+          payload
         );
 
         const address = response.data.contractAddress || '';
