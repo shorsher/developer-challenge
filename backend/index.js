@@ -72,13 +72,14 @@ async function uploadContract() {
 
 async function main() {
   try {
-    await mongo.connect();
     const app = express();
     app.use(cors());
     app.use(bodyparser.json());
+
+    const mongoClient = await mongo.connect();
     let swaggerClient = await uploadContract();
 
-    app.use(electionController(swaggerClient));
+    app.use(electionController(swaggerClient, mongoClient.db()));
     app.listen(PORT, () => console.log(`kaleido dapp backend listening on port ${PORT}!`));
 
   } catch (err) {

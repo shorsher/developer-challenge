@@ -1,17 +1,15 @@
 const express = require('express');
-const mongo = require('../db/mongo')
 const { ObjectID } = require('mongodb');
 
 const {
   FROM_ADDRESS,
 } = require('../config')
 
-let electionController = (swaggerClient) => {
+let electionController = (swaggerClient, db) => {
     let router = express.Router();
 
     router.get('/api/election/candidates/:address', async (req, res) => {
       try {
-        const { db } = mongo;
         const coll = db.collection('candidates');
         const ballotAddress = req?.params?.address || '';
         const query = {
@@ -30,7 +28,6 @@ let electionController = (swaggerClient) => {
 
     router.post('/api/election', async (req, res) => {
       try{
-        const { db } = mongo;
 
         // Note: we really only want to deploy a new instance of the contract
         //       when we are initializing our on-chain state for the first time.

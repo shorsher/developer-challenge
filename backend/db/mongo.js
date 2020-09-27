@@ -30,7 +30,7 @@ async function connect () {
         console.log(`DB connected: ${client.isConnected()}`);
 
         module.exports.client = client;
-        module.exports.db = client.db();
+        return client;
     } catch (err) {
         throw Error(`error connecting to Mongo: ${err}`);
     }
