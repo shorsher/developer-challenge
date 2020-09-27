@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from 'react-router-dom'
 import Button from '@material-ui/core/Button'
-import icon from "../../icons/online-voting.svg";
+import icon from "../../icons/elections.svg";
 import {
   TextField,
   Typography
@@ -47,13 +47,13 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function ElectionSearch() {
+export default function ResultSearch() {
   const [ballotAddress, setBallotAddress] = useState(null);
   const classes = useStyles();
   let history = useHistory();
 
   const electionSearch = () => {
-    history.push(`/vote/${ballotAddress}`);
+    history.push(`/results/${ballotAddress}`);
   }
 
   function handleInput(event) {
@@ -67,8 +67,8 @@ export default function ElectionSearch() {
   return (
     <div className="wrapper">
       <div className={classes.card}>
-        <Typography variant="h3" component="p">
-          Election Search
+        <Typography variant="h4" component="p">
+          Search Election Results
         </Typography>
         <img src={icon} className={classes.logo} alt="logo"/>
         <TextField

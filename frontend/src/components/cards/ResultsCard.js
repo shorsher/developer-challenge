@@ -36,9 +36,8 @@ export default function Election() {
   const classes = useStyles();
   let history = useHistory();
 
-  const voteClick = () => {
-      //TODO: build results page
-    // history.push('/vote');
+  const resultsClick = () => {
+    history.push('/results');
   }
 
   return (
@@ -48,7 +47,13 @@ export default function Election() {
       </Typography>
       <img src={icon} className={classes.logo} alt="logo"/>
       <div className={classes.voteWrapper}>
-        <Button variant="contained" onClick={voteClick} color="primary">Results</Button>
+        <Button
+          variant="contained"
+          onClick={resultsClick}
+          color="primary"
+        >
+          Results
+        </Button>
       </div>
       <Typography variant="body1" component="p">
           View election results.

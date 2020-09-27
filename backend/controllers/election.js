@@ -14,7 +14,6 @@ let electionController = (swaggerClient) => {
         const { db } = mongo;
         const coll = db.collection('candidates');
         const ballotAddress = req?.params?.address || '';
-        console.log("ballot address: ", ballotAddress);
         const query = {
           address: ballotAddress
         };

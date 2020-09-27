@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from 'react-router-dom'
 import Button from '@material-ui/core/Button'
-import icon from "../../icons/online-voting.svg";
 import {
-  TextField,
   Typography
 } from '@material-ui/core';
+import icon from "../icons/elections.svg";
+const axios = require('axios')
 
 // TODO: make this reusable
 const useStyles = makeStyles((theme) => ({
@@ -31,7 +32,6 @@ const useStyles = makeStyles((theme) => ({
   logo: {
     height: '150px',
     width: '200',
-    marginBottom: '20px'
   },
   button: {
     '& > *': {
@@ -47,18 +47,28 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function ElectionSearch() {
-  const [ballotAddress, setBallotAddress] = useState(null);
+export default function Results() {
   const classes = useStyles();
   let history = useHistory();
+  const { address } = useParams();
+  const [results, setResults] = useState([]);
 
-  const electionSearch = () => {
-    history.push(`/vote/${ballotAddress}`);
-  }
+  useEffect(() => {
+    const getCandidates = async () => {
+        try {
+            const response = await axios.get(
+                `http://localhost:4000/api/election/results/${address}`
+            );
 
-  function handleInput(event) {
-    setBallotAddress(event.target.value);
-  }
+            let data = response?.data?.results || [];
+            data.sort((a,b) => b.count - a.count);
+            setResults(data);
+        } catch (err) {
+            console.log(err);
+        }
+    };
+    getCandidates();
+  }, [address]);
 
   const handleBackClick = () => {
     history.goBack();
@@ -67,34 +77,21 @@ export default function ElectionSearch() {
   return (
     <div className="wrapper">
       <div className={classes.card}>
-        <Typography variant="h3" component="p">
-          Election Search
+        <Typography variant="h4" component="p">
+          Election Results
         </Typography>
         <img src={icon} className={classes.logo} alt="logo"/>
-        <TextField
-          id="outlined-basic"
-          required
-          label="Ballot address"
+        {results.map((candidate, index) =>
+          <Typography>
+            {index + 1}. {candidate.name}: {candidate.count} votes
+          </Typography>
+        )}
+        <Button
+          onClick={handleBackClick}
           variant="outlined"
-          onChange={handleInput}
-        />
-        <div className={classes.button}>
-          <Button
-            variant="outlined"
-            onClick={handleBackClick}
-            color="primary"
-          >
-            Back
-          </Button>
-          <Button
-            disabled={!ballotAddress}
-            variant="contained"
-            onClick={electionSearch}
-            color="primary"
-          >
-            Search
-          </Button>
-        </div>
+        >
+          Back
+        </Button>
       </div>
     </div>
   );

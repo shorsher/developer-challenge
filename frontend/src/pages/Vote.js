@@ -45,7 +45,6 @@ export default function Vote() {
     const [loading, setLoading] = useState(false);
     const [selectedCandidate, setSelectedCandidate] = useState({});
 
-
     const candidateSelect = (candidate) => {
         setSelectedCandidate(candidate);
     }
@@ -66,20 +65,15 @@ export default function Vote() {
             setLoading(true);
             event.preventDefault();
 
-            console.log(selectedCandidate);
-
             const payload = {
                 address: address,
                 candidate: selectedCandidate.index
             };
 
-            console.log('payload', payload);
-
             const response = await axios.post(
                 'http://localhost:4000/api/election/vote',
                 payload
             );
-            console.log(response);
             setLoading(false);
             setSubmitSuccess(true);
         } catch (err) {
@@ -119,7 +113,7 @@ export default function Vote() {
             }
         };
         getCandidates();
-    }, [address])
+    }, [address]);
 
     return (
         <form className={classes.wrapper} onSubmit={submitVote}>
