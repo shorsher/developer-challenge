@@ -23,7 +23,7 @@ export default function ButtonLoader({
   let history = useHistory();
 
   const handleBackClick = () => {
-    history.push('/');
+    history.goBack();
   };
 
   const SubmitSection = () => {

@@ -36,10 +36,10 @@ class Registration extends React.Component {
 
     isValid = () => {
       return (
-        this.state.nameOne != '' &&
-        this.state.platformOne != '' &&
-        this.state.nameTwo != '' &&
-        this.state.platformTwo != ''
+        this.state.nameOne !== '' &&
+        this.state.platformOne !== '' &&
+        this.state.nameTwo !== '' &&
+        this.state.platformTwo !== ''
       );
     }
 

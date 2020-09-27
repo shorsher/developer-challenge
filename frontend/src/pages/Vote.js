@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import CandidateSelect from '../components/cards/CandidateSelect';
 import ButtonLoader from '../components/button-loader/ButtonLoader';
 import { Typography } from '@material-ui/core';
-import { Alert, AlertTitle } from '@material-ui/lab'
+import { Alert } from '@material-ui/lab'
 const axios = require('axios');
 
 // TODO: make this reusable
@@ -44,16 +44,7 @@ export default function Vote() {
     const [submitError, setSubmitError] = useState(null);
     const [loading, setLoading] = useState(false);
     const [selectedCandidate, setSelectedCandidate] = useState({});
-    const getCandidates = async () => {
-        try {
-            const response = await axios.get(
-                `http://localhost:4000/api/election/candidates/${address}`
-            );
-            setCandidates(response.data.candidates);
-        } catch (err) {
-            console.log(err);
-        }
-    };
+
 
     const candidateSelect = (candidate) => {
         setSelectedCandidate(candidate);
@@ -117,8 +108,18 @@ export default function Vote() {
     }
 
     useEffect(() => {
+        const getCandidates = async () => {
+            try {
+                const response = await axios.get(
+                    `http://localhost:4000/api/election/candidates/${address}`
+                );
+                setCandidates(response.data.candidates);
+            } catch (err) {
+                console.log(err);
+            }
+        };
         getCandidates();
-    }, [])
+    }, [address])
 
     return (
         <form className={classes.wrapper} onSubmit={submitVote}>
