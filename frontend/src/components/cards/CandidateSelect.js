@@ -5,30 +5,30 @@ import Typography from '@material-ui/core/Typography';
 // TODO: make this reusable
 const useStyles = makeStyles(() => ({
   card: {
-	backgroundColor: '#ffff',
-	borderRadius: '10px',
-	display: 'flex',
-	flexDirection: 'column',
-	width: '450px',
-	alignItems: 'center',
-	justifyContent: 'center',
-	margin: '0px 20px 0px 20px',
-	padding: '20px',
-	border: '2px solid',
-	borderColor: "#CCCCCC"
+    backgroundColor: '#ffff',
+    borderRadius: '10px',
+    display: 'flex',
+    flexDirection: 'column',
+    width: '450px',
+    alignItems: 'center',
+    justifyContent: 'center',
+    margin: '0px 20px 0px 20px',
+    padding: '20px',
+    border: '2px solid',
+    borderColor: "#CCCCCC"
   },
-  selectedCard: {
-	backgroundColor: '#ffff',
-	borderRadius: '10px',
-	display: 'flex',
-	flexDirection: 'column',
-	width: '450px',
-	alignItems: 'center',
-	justifyContent: 'center',
-	margin: '0px 20px 0px 20px',
-	padding: '20px',
-	border: '2px solid',
-	borderColor: '#3942C1'
+    selectedCard: {
+    backgroundColor: '#ffff',
+    borderRadius: '10px',
+    display: 'flex',
+    flexDirection: 'column',
+    width: '450px',
+    alignItems: 'center',
+    justifyContent: 'center',
+    margin: '0px 20px 0px 20px',
+    padding: '20px',
+    border: '2px solid',
+    borderColor: '#3942C1'
   },
 }));
 

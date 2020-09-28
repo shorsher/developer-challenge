@@ -1,7 +1,10 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import {
+  BrowserRouter,
+  Switch,
+  Route
+} from 'react-router-dom';
 import Header from './components/header/Header'
-
 import Home from './pages/Home';
 import Registration from './pages/Registration';
 import Vote from './pages/Vote';
