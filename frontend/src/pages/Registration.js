@@ -1,5 +1,6 @@
 import React from 'react';
 import './Registration.css';
+import { Alert, AlertTitle } from '@material-ui/lab';
 import {
   Typography,
   FormControl,
@@ -7,7 +8,6 @@ import {
   InputLabel,
   TextField,
 } from '@material-ui/core';
-import StatusAlert from '../components/status-alert/StatusAlert';
 import ButtonLoader from '../components/button-loader/ButtonLoader';
 const axios = require('axios');
 
@@ -77,6 +77,28 @@ class Registration extends React.Component {
       this.setState({'loading': false});
       this.setState({'submitSuccess': false});
       this.setState({'submitError': true});
+    }
+  }
+
+  //TOOD: add support for alert messages to Status alert component
+  submitAlert = () => {
+    if (this.state.submitSuccess) {
+      return(
+        <div className="half-margin-top">
+          <Alert severity="success">
+              <AlertTitle>Success</AlertTitle>
+              Ballot Address: <strong>{this.state.contractAddress}</strong>
+          </Alert>
+        </div>
+      )
+    } else if (this.state.submitError) {
+      return(
+        <div className="half-margin-top">
+          <Alert severity="error">Error submitting registration!</Alert>
+        </div>
+      )
+    } else {
+      return null;
     }
   }
 
@@ -166,12 +188,9 @@ class Registration extends React.Component {
             isValid={this.isValid()}
             loading={this.state.loading}
           />
-          <StatusAlert
-            success={this.state.submitSuccess}
-            error={this.state.submitError}
-            errorMessage="Could not submit registration!"
-          >
-          </StatusAlert>
+          <div className="half-margin-top">
+            {this.submitAlert()}
+          </div>
         </div>
       </form>
     );
