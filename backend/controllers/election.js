@@ -37,7 +37,7 @@ let electionController = (swaggerClient, db) => {
             candidateOne: req.body.candidateOne.name,
             candidateTwo: req.body.candidateTwo.name
         },
-        "kld-from": FROM_ADDRESS,
+        "kld-from": req.body.userAddress,
         "kld-sync": "true"
         });
 
@@ -71,11 +71,11 @@ let electionController = (swaggerClient, db) => {
     router.post('/api/election/vote', async (req, res) => {
       try {
         let postRes = await swaggerClient.apis.default.vote_post({
-          address: req.body.address,
+          address: req.body.contractAddress,
           body: {
             index: req.body.candidate
           },
-          "kld-from": FROM_ADDRESS,
+          "kld-from": req.body.userAddress,
           "kld-sync": "true"
         });
         res.status(200).send(postRes.body)
@@ -89,7 +89,7 @@ let electionController = (swaggerClient, db) => {
       try {
         let postRes = await swaggerClient.apis.default.getResults_get({
           address: req.params.address,
-          "kld-from": FROM_ADDRESS,
+          "kld-from": req.query.userAddress,
           "kld-sync": "true"
         });
         res.status(200).send(postRes.body)

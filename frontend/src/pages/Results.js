@@ -33,18 +33,6 @@ const useStyles = makeStyles((theme) => ({
     height: '150px',
     width: '200',
   },
-  button: {
-    '& > *': {
-      marginRight: theme.spacing(1),
-      marginLeft: theme.spacing(1),
-    },
-    display: 'flex',
-    justifyContent: 'center',
-    margin: '20px',
-  },
-  formWrapper: {
-    marginTop: '20px',
-  }
 }));
 
 export default function Results() {
@@ -54,12 +42,12 @@ export default function Results() {
   const [results, setResults] = useState([]);
 
   useEffect(() => {
+    const userAddress = history?.location?.state?.userAddress || "";
     const getCandidates = async () => {
         try {
             const response = await axios.get(
-                `http://localhost:4000/api/election/results/${address}`
+                `http://localhost:4000/api/election/results/${address}?userAddress=${userAddress}`
             );
-
             let data = response?.data?.results || [];
             data.sort((a,b) => b.count - a.count);
             setResults(data);

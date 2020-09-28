@@ -11,6 +11,7 @@ const useStyles = makeStyles((theme) => ({
     '& > *': {
       marginRight: theme.spacing(1),
       marginLeft: theme.spacing(1),
+      marginTop: theme.spacing(1),
     },
   },
 }));

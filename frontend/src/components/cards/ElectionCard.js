@@ -13,7 +13,7 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
     flexDirection: 'column',
     height: '500px',
-    width: '450px',
+    width: '22vw',
     alignItems: 'center',
     justifyContent: 'center',
     margin: '20px',
@@ -40,14 +40,14 @@ export default function ElectionCard() {
   return (
     <div className={classes.card}>
       <Typography variant="h3" component="p">
-        Register Candidates
+        Add Candidates
       </Typography>
       <img src={icon} className={classes.logo} alt="logo"/>
       <div className={classes.button}>
         <Button variant="contained" onClick={registerClick} color="primary">Register</Button>
       </div>
       <Typography variant="body1" component="p">
-        Begin an election by adding candidates.
+        Begin an election by registering candidates.
       </Typography>
     </div>
   );

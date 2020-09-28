@@ -12,7 +12,7 @@ const useStyles = makeStyles(() => ({
 	width: '450px',
 	alignItems: 'center',
 	justifyContent: 'center',
-	margin: '20px',
+	margin: '0px 20px 0px 20px',
 	padding: '20px',
 	border: '2px solid',
 	borderColor: "#CCCCCC"
@@ -25,7 +25,7 @@ const useStyles = makeStyles(() => ({
 	width: '450px',
 	alignItems: 'center',
 	justifyContent: 'center',
-	margin: '20px',
+	margin: '0px 20px 0px 20px',
 	padding: '20px',
 	border: '2px solid',
 	borderColor: '#3942C1'

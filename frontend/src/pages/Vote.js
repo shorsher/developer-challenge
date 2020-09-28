@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import CandidateSelect from '../components/cards/CandidateSelect';
 import ButtonLoader from '../components/button-loader/ButtonLoader';
-import { Typography } from '@material-ui/core';
+import { Typography, TextField } from '@material-ui/core';
 import { Alert } from '@material-ui/lab'
 const axios = require('axios');
 
@@ -30,10 +30,6 @@ const useStyles = makeStyles(() => ({
         display: 'flex',
         flexDirection: 'row',
     },
-    logo: {
-        height: '150px',
-        width: '200'
-    },
 }));
 
 export default function Vote() {
@@ -43,6 +39,7 @@ export default function Vote() {
     const [submitSuccess, setSubmitSuccess] = useState(null);
     const [submitError, setSubmitError] = useState(null);
     const [loading, setLoading] = useState(false);
+    const [userAddress, setUserAddress] = useState(null);
     const [selectedCandidate, setSelectedCandidate] = useState({});
 
     const candidateSelect = (candidate) => {
@@ -54,7 +51,7 @@ export default function Vote() {
     }
 
     const isValid = () => {
-        if (Object.keys(selectedCandidate).length !== 0) {
+        if ((Object.keys(selectedCandidate).length !== 0) && userAddress !== null) {
             return true;
         }
         return false;
@@ -66,7 +63,8 @@ export default function Vote() {
             event.preventDefault();
 
             const payload = {
-                address: address,
+                contractAddress: address,
+                userAddress: userAddress,
                 candidate: selectedCandidate.index
             };
 
@@ -82,6 +80,10 @@ export default function Vote() {
             setSubmitError(true);
         }
     }
+
+    const handleUserInput = (event) => {
+        setUserAddress(event.target.value);
+    };
 
     const submitAlert = () => {
         if (submitSuccess) {
@@ -134,6 +136,14 @@ export default function Vote() {
                         ></CandidateSelect>
                     ))}
                 </div>
+                <TextField
+                    id="outlined-basic"
+                    required
+                    label="User address"
+                    variant="outlined"
+                    margin="normal"
+                    onChange={handleUserInput}
+                />
                 <ButtonLoader
                     isValid={isValid()}
                     loading={loading}

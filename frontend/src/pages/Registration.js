@@ -23,6 +23,7 @@ class Registration extends React.Component {
         submitSuccess: false,
         submitError: false,
         contractAddress: '',
+        userAddress : '',
       };
       this.handleChange = this.handleChange.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
@@ -39,7 +40,8 @@ class Registration extends React.Component {
         this.state.nameOne !== '' &&
         this.state.platformOne !== '' &&
         this.state.nameTwo !== '' &&
-        this.state.platformTwo !== ''
+        this.state.platformTwo !== '' &&
+        this.state.userAddress !== ''
       );
     }
 
@@ -48,6 +50,7 @@ class Registration extends React.Component {
         this.setState({'loading': true});
         event.preventDefault();
         const payload = {
+          userAddress: this.state.userAddress,
           candidateOne: {
             name: this.state.nameOne,
             platform: this.state.platformOne,
@@ -170,6 +173,16 @@ class Registration extends React.Component {
                 </div>
               </div>
             </div>
+            <TextField
+              id="outlined-basic"
+              required
+              label="User address"
+              variant="outlined"
+              margin="normal"
+              name="userAddress"
+              value={this.state.userAddress}
+              onChange={this.handleChange}
+            />
             <ButtonLoader
               isValid={this.isValid()}
               loading={this.state.loading}

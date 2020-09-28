@@ -15,7 +15,7 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
     flexDirection: 'column',
     height: '500px',
-    width: '450px',
+    width: '22vw',
     alignItems: 'center',
     justifyContent: 'center',
     margin: '20px',

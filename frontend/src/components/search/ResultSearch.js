@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
   logo: {
     height: '150px',
     width: '200',
-    marginBottom: '20px'
+    marginBottom: '5px'
   },
   button: {
     '& > *': {
@@ -49,15 +49,20 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ResultSearch() {
   const [ballotAddress, setBallotAddress] = useState(null);
+  const [userAddress, setUserAddress] = useState(null);
   const classes = useStyles();
   let history = useHistory();
 
   const electionSearch = () => {
-    history.push(`/results/${ballotAddress}`);
+    history.push(`/results/${ballotAddress}`, { userAddress: userAddress});
   }
 
-  function handleInput(event) {
+  function handleBallotInput(event) {
     setBallotAddress(event.target.value);
+  }
+
+  function handleUserInput(event) {
+    setUserAddress(event.target.value);
   }
 
   const handleBackClick = () => {
@@ -76,7 +81,16 @@ export default function ResultSearch() {
           required
           label="Ballot address"
           variant="outlined"
-          onChange={handleInput}
+          margin="dense"
+          onChange={handleBallotInput}
+        />
+        <TextField
+          id="outlined-basic"
+          required
+          label="User address"
+          variant="outlined"
+          margin="dense"
+          onChange={handleUserInput}
         />
         <div className={classes.button}>
           <Button

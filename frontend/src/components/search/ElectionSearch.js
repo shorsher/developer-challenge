@@ -56,7 +56,7 @@ export default function ElectionSearch() {
     history.push(`/vote/${ballotAddress}`);
   }
 
-  function handleInput(event) {
+  const handleInput = (event) => {
     setBallotAddress(event.target.value);
   }
 
