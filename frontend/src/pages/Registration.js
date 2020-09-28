@@ -7,7 +7,7 @@ import {
   InputLabel,
   TextField,
 } from '@material-ui/core';
-import { Alert, AlertTitle } from '@material-ui/lab';
+import StatusAlert from '../components/status-alert/StatusAlert';
 import ButtonLoader from '../components/button-loader/ButtonLoader';
 const axios = require('axios');
 
@@ -32,7 +32,7 @@ class Registration extends React.Component {
     handleChange = (event) => {
       this.setState({
         [event.target.name]: event.target.value
-      })
+      });
     }
 
     isValid = () => {
@@ -71,33 +71,12 @@ class Registration extends React.Component {
         const address = response.data.contractAddress || '';
         this.setState({'contractAddress': address});
         this.setState({'loading': false});
+        this.setState({'submitError': false});
         this.setState({'submitSuccess': true});
       } catch (error) {
-        console.log(error);
         this.setState({'loading': false});
+        this.setState({'submitSuccess': false});
         this.setState({'submitError': true});
-      }
-    }
-
-    // I'm sure there is a better way to do this
-    submitAlert = () => {
-      if (this.state.submitSuccess) {
-        return(
-          <div className="half-margin-top">
-            <Alert severity="success">
-                <AlertTitle>Success</AlertTitle>
-                Ballot Address: <strong>{this.state.contractAddress}</strong>
-            </Alert>
-          </div>
-        )
-      } else if (this.state.submitError) {
-        return(
-          <div className="half-margin-top">
-            <Alert severity="error">Error submitting registration!</Alert>
-          </div>
-        )
-      } else {
-        return null;
       }
     }
 
@@ -187,9 +166,12 @@ class Registration extends React.Component {
               isValid={this.isValid()}
               loading={this.state.loading}
             />
-            <div className="half-margin-top">
-              {this.submitAlert()}
-            </div>
+            <StatusAlert
+              success={this.state.submitSuccess}
+              error={this.state.submitError}
+              errorMessage="Could not submit registration!"
+            >
+            </StatusAlert>
           </div>
         </form>
       );

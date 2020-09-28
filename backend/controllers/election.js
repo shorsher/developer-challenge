@@ -1,10 +1,6 @@
 const express = require('express');
 const { ObjectID } = require('mongodb');
 
-const {
-  FROM_ADDRESS,
-} = require('../config')
-
 let electionController = (swaggerClient, db) => {
     let router = express.Router();
 
@@ -81,7 +77,11 @@ let electionController = (swaggerClient, db) => {
         res.status(200).send(postRes.body)
       }
       catch(err) {
-        res.status(500).send({error: `${err.response && err.response.body && err.response.text}\n${err.stack}`});
+        if (err.response.body.error === 'You cannot vote twice') {
+          res.status(403).send({error: `${err.response.body.error}`});
+        } else {
+          res.status(500).send({error: `${err.response && err.response.body && err.response.text}\n${err.stack}`});
+        }
       }
     });
 
@@ -95,7 +95,11 @@ let electionController = (swaggerClient, db) => {
         res.status(200).send(postRes.body)
       }
       catch(err) {
-        res.status(500).send({error: `${err.response && err.response.body && err.response.text}\n${err.stack}`});
+        if (err.response.body.error === 'Restricted to ballot creator') {
+          res.status(403).send({error: `${err.response.body.error}`});
+        } else {
+          res.status(500).send({error: `${err.response && err.response.body && err.response.text}\n${err.stack}`});
+        }
       }
     });
 

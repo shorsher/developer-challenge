@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
+import StatusAlert from '../components/status-alert/StatusAlert';
 import CandidateSelect from '../components/cards/CandidateSelect';
 import ButtonLoader from '../components/button-loader/ButtonLoader';
 import { Typography, TextField } from '@material-ui/core';
-import { Alert } from '@material-ui/lab'
 const axios = require('axios');
 
 // TODO: make this reusable
@@ -40,6 +40,7 @@ export default function Vote() {
     const [submitError, setSubmitError] = useState(null);
     const [loading, setLoading] = useState(false);
     const [userAddress, setUserAddress] = useState(null);
+    const [errorMessage, setErrorMessage] = useState(null);
     const [selectedCandidate, setSelectedCandidate] = useState({});
 
     const candidateSelect = (candidate) => {
@@ -68,15 +69,17 @@ export default function Vote() {
                 candidate: selectedCandidate.index
             };
 
-            const response = await axios.post(
+            await axios.post(
                 'http://localhost:4000/api/election/vote',
                 payload
             );
             setLoading(false);
+            setSubmitError(false);
             setSubmitSuccess(true);
         } catch (err) {
-            console.log(err);
+            setErrorMessage(err.response.data.error);
             setLoading(false);
+            setSubmitSuccess(false);
             setSubmitError(true);
         }
     }
@@ -84,24 +87,6 @@ export default function Vote() {
     const handleUserInput = (event) => {
         setUserAddress(event.target.value);
     };
-
-    const submitAlert = () => {
-        if (submitSuccess) {
-            return(
-                <div className="half-margin-top">
-                <Alert severity="success">Success!</Alert>
-                </div>
-            )
-        } else if (submitError) {
-        return(
-            <div className="half-margin-top">
-            <Alert severity="error">Error submitting vote!</Alert>
-            </div>
-        )
-        } else {
-            return null;
-        }
-    }
 
     useEffect(() => {
         const getCandidates = async () => {
@@ -148,9 +133,12 @@ export default function Vote() {
                     isValid={isValid()}
                     loading={loading}
                 />
-                <div className="half-margin-top">
-                    {submitAlert()}
-                </div>
+                <StatusAlert
+                    success={submitSuccess}
+                    error={submitError}
+                    errorMessage={errorMessage}
+                >
+                </StatusAlert>
             </div>
         </form>
     );

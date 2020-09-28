@@ -6,6 +6,7 @@ import Button from '@material-ui/core/Button'
 import {
   Typography
 } from '@material-ui/core';
+import StatusAlert from '../components/status-alert/StatusAlert';
 import icon from "../icons/elections.svg";
 const axios = require('axios')
 
@@ -15,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    flexDirection: 'row'
+    flexDirection: 'row',
   },
   card: {
     backgroundColor: '#ffff',
@@ -33,6 +34,9 @@ const useStyles = makeStyles((theme) => ({
     height: '150px',
     width: '200',
   },
+  button: {
+    margin: theme.spacing(1),
+  }
 }));
 
 export default function Results() {
@@ -40,6 +44,8 @@ export default function Results() {
   let history = useHistory();
   const { address } = useParams();
   const [results, setResults] = useState([]);
+  const [resultError, setResultError] = useState(null);
+  const [errorMessage, setErrorMessage] = useState(null);
 
   useEffect(() => {
     const userAddress = history?.location?.state?.userAddress || "";
@@ -53,10 +59,12 @@ export default function Results() {
             setResults(data);
         } catch (err) {
             console.log(err);
+            setResultError(true);
+            setErrorMessage(err.response.data.error);
         }
     };
     getCandidates();
-  }, [address]);
+  }, [address, history.location.state.userAddress]);
 
   const handleBackClick = () => {
     history.goBack();
@@ -69,17 +77,26 @@ export default function Results() {
           Election Results
         </Typography>
         <img src={icon} className={classes.logo} alt="logo"/>
-        {results.map((candidate, index) =>
-          <Typography>
-            {index + 1}. {candidate.name}: {candidate.count} votes
-          </Typography>
-        )}
-        <Button
-          onClick={handleBackClick}
-          variant="outlined"
+        <div>
+          {results.map((candidate, index) =>
+            <Typography>
+              {index + 1}. {candidate.name}: {candidate.count} votes
+            </Typography>
+          )}
+        </div>
+        <StatusAlert
+            error={resultError}
+            errorMessage={errorMessage}
         >
-          Back
-        </Button>
+        </StatusAlert>
+        <div className={classes.button}>
+          <Button
+            onClick={handleBackClick}
+            variant="outlined"
+          >
+            Back
+          </Button>
+        </div>
       </div>
     </div>
   );
